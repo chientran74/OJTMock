@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/web/header :: web_head" />
+ <body>
+<!-- 	 <div th:replace="fragments/web/header :: menu"></div> 
+ -->  	<!-- ::::::  Start  Breadcrumb Section  ::::::  -->
+	<div class="page-breadcrumb">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<ul class="page-breadcrumb__menu">
+						<li class="page-breadcrumb__nav"><a th:href="@{/}">Home</a></li>
+						<li class="page-breadcrumb__nav active">Register Page</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- ::::::  End  Breadcrumb Section  ::::::  -->
+	<!-- ::::::  Start  Main Container Section  ::::::  -->
+	<main id="main-container" class="main-container">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<!-- login area start -->
+					<div class="login-register-area">
+						<div class="container">
+							<div class="row">
+								<div class="col-lg-7 col-md-12 ml-auto mr-auto">
+									<div class="login-register-wrapper">
+										<div class="login-register-tab-list nav">
+									
+												<h4>register</h4>
+										
+										</div>
+										<div th:if="${param.success}">
+											<div class="alert alert-success">
+												Bạn đã đăng kí thành công
+											</div>
+										</div>
+										<div th:if="${existUsername}">
+											<div class="alert alert-danger">
+												Tên tài khoản đã tồn tại. Vui lòng nhập tên khác
+											</div>
+										</div>
+										<div th:if="${existEmail}">
+											<div class="alert alert-danger">
+												Email này đã được sử dụng. Vui lòng nhập email khác
+											</div>
+										</div>
+											<div class="login-form-container">
+												<div class="login-register-form">
+													<form th:action="@{/process_register}" method="post" th:object="${user}">
+														<div class="form-box__single-group">
+															<input type="text" id="form-register-username"
+																th:field="*{username}" placeholder="Username">
+																<div class="text text-danger" th:if="${#fields.hasErrors('username')}"
+																	th:errors="*{username}"></div>
+														</div>
+														<div class="form-box__single-group">
+															<input type="email" id="form-uregister-sername-email"
+																th:field="*{email}" placeholder="Enter email">
+															<div class="text text-danger" th:if="${#fields.hasErrors('email')}"
+																	th:errors="*{email}"></div>
+																
+														</div>
+														<div class="form-box__single-group m-b-20">
+															<input type="password"
+																id="form-register-username-password"
+																th:field="*{password}" placeholder="Enter password">
+																<div class="text text-danger" th:if="${#fields.hasErrors('password')}"
+																	th:errors="*{password}"></div>
+																
+														</div>
+														<button
+															class="btn btn--box btn--small btn--blue btn--uppercase btn--weight"
+															type="submit">REGISTER</button>
+													</form>
+												</div>
+											</div>
+										</div>
+							
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- login area end -->
+				</div>
+			</div>
+		</div>
+	</main>
+	<!-- ::::::  End  Main Container Section  ::::::  -->
+<!-- 	<div th:replace="fragments/web/footer :: web_footer"></div>
+ -->	
+ 	</body>
+</html>
